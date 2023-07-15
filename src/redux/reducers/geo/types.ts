@@ -1,4 +1,4 @@
-import { IGeolocation } from '@services/api/types';
+import { IGeolocation } from 'services/api/types';
 
 export interface IGeoStore {
   data: IGeolocation | null;

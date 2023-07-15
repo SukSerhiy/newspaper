@@ -18,7 +18,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@redux': path.resolve(__dirname, './src/redux'),
-      '@services': path.resolve(__dirname, './src/services'),
+      'services': path.resolve(__dirname, './src/services'),
+      'pages': path.resolve(__dirname, './src/pages'),
+      'enums': path.resolve(__dirname, './src/enums'),
+      'layouts': path.resolve(__dirname, './src/layouts'),
     },
   },
 });

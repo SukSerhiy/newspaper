@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   ITopHeadlinesParams,
@@ -16,7 +17,7 @@ const topHeadlines = createSlice({
   reducers: {
     getTopHeadlinesRequest: (
       state,
-      action: PayloadAction<ITopHeadlinesParams>
+      _action: PayloadAction<ITopHeadlinesParams>
     ) => {
       state.loading = true;
     },

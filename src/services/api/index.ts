@@ -1,5 +1,5 @@
 import endpoints from '../endpoints';
-import { http, geoHttp } from '@services/http';
+import { http, geoHttp } from 'services/http';
 import { IApi } from './types';
 
 export const api: IApi = {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { api } from '@services/api';
-import { IGeolocation } from '@services/api/types';
+import { api } from 'services/api';
+import { IGeolocation } from 'services/api/types';
 import { getGeolocationRequest, getGeolocationSuccess } from './reducer';
 
 // =============================================================:

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGeolocation } from '@services/api/types';
+import { IGeolocation } from 'services/api/types';
 import { IGeoStore } from './types';
 
 const initialState: IGeoStore = {

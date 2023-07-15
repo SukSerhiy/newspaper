@@ -1,4 +1,4 @@
-import { ITopHeadlinesResponse } from '@services/api/types';
+import { ITopHeadlinesResponse } from 'services/api/types';
 
 
 export interface ITopHeadlinesStore {

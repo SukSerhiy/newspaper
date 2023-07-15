@@ -21,7 +21,10 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@redux/*": ["./src/redux/*"],
-      "@services/*": ["./src/services/*"]
+      "services/*": ["./src/services/*"],
+      "pages/*": ["./src/pages/*"],
+      "enums/*": ["./src/enums/*"],
+      "layouts/*": ["./src/layouts/*"],
     }
   },
   "include": ["src"],

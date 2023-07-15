@@ -1,11 +1,11 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { api } from '@services/api';
+import { api } from 'services/api';
 import {
   ITopHeadlinesParams,
   ITopHeadlinesResponse,
-} from '@services/api/types';
+} from 'services/api/types';
 import { getTopHeadlinesRequest, getTopHeadlinesSuccess } from './reducer';
 
 // =============================================================:
