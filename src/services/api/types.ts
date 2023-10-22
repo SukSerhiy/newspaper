@@ -2,6 +2,7 @@ export interface IApi {
   getTopHeadlines: (
     params: ITopHeadlinesParams
   ) => Promise<ITopHeadlinesResponse>;
+  getEverything: (params: IEverythingParams) => Promise<IEverythingResponse>;
   getGeolocation: () => Promise<any>;
 }
 
@@ -19,7 +20,15 @@ export interface ITopHeadlinesResponse {
 }
 
 export interface IArticle {
-  title: string;
+  title?: string | null;
+  author?: string | null;
+  description?: string | null;
+  publishedAt?: string | null;
+  source?: {
+    name: string | null;
+  } | null;
+  url?: string | null;
+  urlToImage?: string | null;
 }
 
 export interface IGeolocation {
@@ -42,6 +51,10 @@ export interface IEverythingParams {
   sortBy?: TSortBy;
   pageSize?: number;
   page?: string;
+}
+
+export interface IEverythingResponse {
+  articles: IArticle[];
 }
 
 // ==========================================================

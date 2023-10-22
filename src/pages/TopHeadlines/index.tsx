@@ -2,17 +2,15 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Layout from 'layouts/MainLayout';
 import { getTopHeadlinesRequest } from '@redux/reducers/topHeadlines/reducer';
-import { getGeolocationRequest } from '@redux/reducers/geo/reducer';
-import { getGeoLoading, getGeoData } from '@redux/reducers/geo/selectors';
 import { getTopHeadlinesData } from '@redux/reducers/topHeadlines/selectors';
 import { TCountryCode } from 'services/api/types';
+import useGeolocation from 'hooks/useGeolocation';
+import Article from 'components/Article';
 
 const TopHeadlines = () => {
   const dispatch = useDispatch();
-  const geoData = useSelector(getGeoData);
-  const geoLoading = useSelector(getGeoLoading);
   const topHeadlines = useSelector(getTopHeadlinesData);
-  const isoCode = geoData?.country.iso_code;
+  const { geoLoading, isoCode } = useGeolocation();
 
   useEffect(() => {
     !geoLoading &&
@@ -24,13 +22,16 @@ const TopHeadlines = () => {
       );
   }, [dispatch, geoLoading, isoCode]);
 
-  useEffect(() => {
-    dispatch(getGeolocationRequest());
-  }, [dispatch]);
+  const { articles } = topHeadlines || {};
 
   return (
-    <Layout>
-      Top Headlines
+    <Layout className="top-headlines">
+      <h2>Top headlines</h2>
+      <div className="top-headlines__articles articles">
+        {articles?.map((item, idx) => (
+          <Article key={idx} item={item} />
+        ))}
+      </div>
     </Layout>
   );
 };

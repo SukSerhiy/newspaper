@@ -9,4 +9,8 @@ export const api: IApi = {
     http
       .get(endpoints.TOP_HEADLINES, { params })
       .then((response) => response.data),
+  getEverything: (params) =>
+    http
+      .get(endpoints.EVERYTHING, { params })
+      .then((response) => response.data),
 };

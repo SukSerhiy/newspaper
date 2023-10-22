@@ -2,6 +2,7 @@ import axios from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { api } from 'services/api';
 import { IGeolocation } from 'services/api/types';
+import { showError } from 'services/utils/error';
 import { getGeolocationRequest, getGeolocationSuccess } from './reducer';
 
 // =============================================================:
@@ -12,7 +13,9 @@ function* getGolocationWorker() {
     yield put(getGeolocationSuccess(response));
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      // responseErrors(error);
+      if (axios.isAxiosError(error)) {
+        showError(error);
+      }
     }
   }
 }

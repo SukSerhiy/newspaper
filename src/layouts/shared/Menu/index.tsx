@@ -1,18 +1,20 @@
-import { Link } from 'react-router-dom';
+import { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import ERoutes from 'enums/routes';
+import { IMenu } from './types';
 
-const Menu = () => {
+const Menu: FC<IMenu> = ({ isActive }) => {
   return (
-    <nav className="menu">
+    <nav className={`nav ${isActive ? 'nav__active' : ''}`}>
       <ul>
         <li>
-          <Link to={`/${ERoutes.home}`}>Top Headlines</Link>
+          <NavLink to={`/${ERoutes.home}`}>Top Headlines</NavLink>
         </li>
         <li>
-          <Link to={`/${ERoutes.everything}`}>Everything</Link>
+          <NavLink to={`/${ERoutes.everything}`}>Everything</NavLink>
         </li>
         <li>
-          <Link to={`/${ERoutes.sources}`}>Sources</Link>
+          <NavLink to={`/${ERoutes.sources}`}>Sources</NavLink>
         </li>
       </ul>
     </nav>

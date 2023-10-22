@@ -6,23 +6,21 @@ import {
   ITopHeadlinesParams,
   ITopHeadlinesResponse,
 } from 'services/api/types';
+import { showError } from 'services/utils/error';
 import { getTopHeadlinesRequest, getTopHeadlinesSuccess } from './reducer';
 
 // =============================================================:
 function* getTopHeadlinesWorker({
   payload,
 }: PayloadAction<ITopHeadlinesParams>) {
-  const { country } = payload;
 
   try {
-    const response: ITopHeadlinesResponse = yield call(api.getTopHeadlines, {
-      country,
-    });
+    const response: ITopHeadlinesResponse = yield call(api.getTopHeadlines, payload);
 
     yield put(getTopHeadlinesSuccess(response));
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      // responseErrors(error);
+      showError(error);
     }
   }
 }

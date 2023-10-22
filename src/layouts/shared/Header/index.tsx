@@ -1,23 +1,26 @@
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import Menu from '../Menu';
 import Categories from '../Categories';
 
 const Header = () => {
+  const [isActive, setIsActive] = useState(false);
   return (
     <header className="header">
-      <div className="header__title">
-        <h3>Newspaper</h3>
-        <button type="button" className="search-btn">
-          <i className="fa-solid fa-magnifying-glass" />
-        </button>
-        <button type="button" className="menu-btn">
-          <i className="fa-solid fa-bars" />
+      <div className="header__title-block">
+        <h3 className="header__title">Newspaper</h3>
+        <button
+          type="button"
+          className="header__btn-menu"
+          onClick={() => setIsActive((prev) => !prev)}
+        >
+          <FontAwesomeIcon icon={faBars} />
         </button>
       </div>
-      <div className="search-input">
-        <input type="text" className="search-input__input" />
-      </div>
-      <Menu />
-      <Categories />
+      <Menu isActive={isActive} />
+      {/* <Categories /> */}
+      {/* <div className="header__space"></div> */}
     </header>
   );
 };

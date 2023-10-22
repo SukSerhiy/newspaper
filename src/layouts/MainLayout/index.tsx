@@ -2,11 +2,11 @@ import { FC } from 'react';
 import Header from '../shared/Header';
 import { IMainLayout } from './types';
 
-const MainLayout: FC<IMainLayout> = ({ children }) => {
+const MainLayout: FC<IMainLayout> = ({ children, className = '' }) => {
   return (
     <div className="wrapper">
       <Header />
-      <main>{children}</main>
+      <main className={className}>{children}</main>
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ERoutes from 'enums/routes';
 import TopHeadlines from 'pages/TopHeadlines';
 import Everything from 'pages/Everything';
+import Notification from 'components/Notification';
+import 'assets/styles/styles.scss';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +26,7 @@ const router = createBrowserRouter([
 render(
   <Provider store={store}>
     <RouterProvider router={router} />
+    <Notification />
   </Provider>,
   document.getElementById('root')
 );
