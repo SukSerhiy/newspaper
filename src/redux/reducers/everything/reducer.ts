@@ -7,6 +7,7 @@ import {
 import { IEverythingStore } from './types';
 
 const initialState: IEverythingStore = {
+  search: '',
   data: null,
   loading: false,
 };
@@ -28,12 +29,16 @@ const everything = createSlice({
       state.loading = false;
       state.data = payload;
     },
-    clearResult: (state) => {
+    setSearch: (state, { payload }: PayloadAction<string>) => {
+      state.search = payload;
+    },
+    clearSearch: (state) => {
+      state.search = '';
       state.data = null;
     },
   },
 });
 
 export default everything.reducer;
-export const { getEverythingRequest, getEverythingSuccess, clearResult } =
+export const { getEverythingRequest, getEverythingSuccess, setSearch, clearSearch } =
   everything.actions;

@@ -3,6 +3,7 @@ export interface IApi {
     params: ITopHeadlinesParams
   ) => Promise<ITopHeadlinesResponse>;
   getEverything: (params: IEverythingParams) => Promise<IEverythingResponse>;
+  getSources: (params: ISourcesParams) => Promise<ISourcesResponse>
   getGeolocation: () => Promise<any>;
 }
 
@@ -17,18 +18,6 @@ export interface ITopHeadlinesParams {
 
 export interface ITopHeadlinesResponse {
   articles: IArticle[];
-}
-
-export interface IArticle {
-  title?: string | null;
-  author?: string | null;
-  description?: string | null;
-  publishedAt?: string | null;
-  source?: {
-    name: string | null;
-  } | null;
-  url?: string | null;
-  urlToImage?: string | null;
 }
 
 export interface IGeolocation {
@@ -65,7 +54,36 @@ export interface ISourcesParams {
   country?: TCountryCode;
 }
 
+export interface ISourcesResponse {
+  sources: ISource[];
+}
+
 // ==========================================================
+
+export interface IArticle {
+  title?: string | null;
+  author?: string | null;
+  description?: string | null;
+  publishedAt?: string | null;
+  source?: {
+    name: string | null;
+  } | null;
+  url?: string | null;
+  urlToImage?: string | null;
+}
+
+export interface ISource {
+  id: string;
+  name?: string | null;
+  description?: string | null;
+  url?: string | null;
+  category?: string | null;
+  language?: string | null;
+  country?: string | null;
+}
+
+// ==========================================================
+
 export type TCountryCode =
   | 'ae'
   | 'ar'

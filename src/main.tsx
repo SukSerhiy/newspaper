@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ERoutes from 'enums/routes';
 import TopHeadlines from 'pages/TopHeadlines';
 import Everything from 'pages/Everything';
+import Sources from 'pages/Sources';
 import Notification from 'components/Notification';
 import 'assets/styles/styles.scss';
 
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: ERoutes.sources,
-    element: <Everything />,
+    element: <Sources />,
   },
 ]);
 

@@ -1,15 +1,20 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { IStoreState } from '@redux/types';
-import { ITopHeadlinesStore } from '@redux/reducers/topHeadlines/types';
+import { IEverythingStore } from '@redux/reducers/everything/types';
 
-const getEverythingState = (state: IStoreState): ITopHeadlinesStore => state.everything;
+const getEverythingState = (state: IStoreState): IEverythingStore => state.everything;
 
 export const getEverythingLoading = createSelector(
   [getEverythingState],
-  (topHeadlines: ITopHeadlinesStore) => topHeadlines.loading
+  (everything: IEverythingStore) => everything.loading
 );
 
 export const getEverythingData = createSelector(
   [getEverythingState],
-  (topHeadlines: ITopHeadlinesStore) => topHeadlines.data
+  (everything: IEverythingStore) => everything.data
+);
+
+export const getSearch = createSelector(
+  [getEverythingState],
+  (everything: IEverythingStore) => everything.search
 );

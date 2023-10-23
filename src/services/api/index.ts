@@ -13,4 +13,6 @@ export const api: IApi = {
     http
       .get(endpoints.EVERYTHING, { params })
       .then((response) => response.data),
+  getSources: (params) =>
+    http.get(endpoints.SOURCES, { params }).then((response) => response.data),
 };

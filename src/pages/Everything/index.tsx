@@ -3,26 +3,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import debounce from 'lodash.debounce';
 import {
   getEverythingRequest,
-  clearResult,
+  setSearch,
+  clearSearch,
 } from '@redux/reducers/everything/reducer';
 import {
   getEverythingLoading,
   getEverythingData,
+  getSearch,
 } from '@redux/reducers/everything/selectors';
 import Layout from 'layouts/MainLayout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faCross } from '@fortawesome/free-solid-svg-icons';
 import Article from 'components/Article';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Loading from 'components/Loading';
 import SearchInput from './SearchInput';
 
 const Everything = () => {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState('');
   const data = useSelector(getEverythingData);
-
-  const notify = () => toast.error('Wow so easy!');
+  const loading = useSelector(getEverythingLoading);
+  const search = useSelector(getSearch);
 
   const { articles = [] } = data || {};
 
@@ -30,7 +28,7 @@ const Everything = () => {
     () =>
       debounce((value: string) => {
         if (!value) {
-          dispatch(clearResult());
+          dispatch(clearSearch());
           return;
         }
         dispatch(
@@ -44,18 +42,30 @@ const Everything = () => {
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setSearch(value);
+    dispatch(setSearch(value));
     fetchData(value);
   };
 
+  const handleClear = () => {
+    dispatch(clearSearch());
+  };
+
   return (
-    <Layout className="everything">
-      <SearchInput value={search} onChange={handleInputChange} />
-      <div className="articles">
-        {articles?.map((item, idx) => (
-          <Article key={idx} item={item} />
-        ))}
-      </div>
+    <Layout className={`everything ${loading ? 'loading' : ''}`}>
+      <SearchInput
+        value={search}
+        onChange={handleInputChange}
+        onClear={handleClear}
+      />
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="articles">
+          {articles?.map((item, idx) => (
+            <Article key={idx} item={item} />
+          ))}
+        </div>
+      )}
     </Layout>
   );
 };

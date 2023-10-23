@@ -2,19 +2,19 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { api } from 'services/api';
-import { IEverythingParams, IEverythingResponse } from 'services/api/types';
+import { ISourcesParams, ISourcesResponse } from 'services/api/types';
 import { showError } from 'services/utils/error';
-import { getEverythingRequest, getEverythingSuccess } from './reducer';
+import { getSourcesRequest, getSourcesSuccess } from './reducer';
 
 // =============================================================:
-function* getEverythingWorker({ payload }: PayloadAction<IEverythingParams>) {
+function* getEverythingWorker({ payload }: PayloadAction<ISourcesParams>) {
   try {
-    const response: IEverythingResponse = yield call(
-      api.getEverything,
+    const response: ISourcesResponse = yield call(
+      api.getSources,
       payload
     );
 
-    yield put(getEverythingSuccess(response));
+    yield put(getSourcesSuccess(response));
   } catch (error) {
     if (axios.isAxiosError(error)) {
       showError(error);
@@ -23,6 +23,6 @@ function* getEverythingWorker({ payload }: PayloadAction<IEverythingParams>) {
 }
 
 // =============================================================:
-export function* everythingSaga() {
-  yield takeEvery(getEverythingRequest.type, getEverythingWorker);
+export function* sourcesSaga() {
+  yield takeEvery(getSourcesRequest.type, getEverythingWorker);
 }

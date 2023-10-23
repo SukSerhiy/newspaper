@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons';
 import { ISearchInput } from './types';
 
-const SearchInput: FC<ISearchInput> = ({ value, onChange }) => {
+const SearchInput: FC<ISearchInput> = ({ value, onChange, onClear }) => {
   const [s, setS] = useState(!value);
 
   useEffect(() => {
@@ -27,12 +27,20 @@ const SearchInput: FC<ISearchInput> = ({ value, onChange }) => {
             setS(false);
           }
         }}
-        placeholder='Search...'
+        placeholder="Search..."
       />
-      {s && <FontAwesomeIcon icon={faSearch} className="search-icon search-icon__search" />}
-      {/* <button type="button">
-        <FontAwesomeIcon icon={faClose} className="search-icon search-icon__close" />
-      </button> */}
+      {s && (
+        <FontAwesomeIcon
+          icon={faSearch}
+          className="search-icon search-icon__search"
+        />
+      )}
+      <button type="button" className="search-btn search-btn__close" onClick={onClear}>
+        <FontAwesomeIcon
+          icon={faClose}
+          className="search-icon search-icon__close"
+        />
+      </button>
     </div>
   );
 };
