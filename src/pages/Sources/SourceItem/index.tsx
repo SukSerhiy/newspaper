@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink, faExternalLink } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import { ISourceItem } from './types';
 
 const SourceItem: FC<ISourceItem> = ({ item }) => {

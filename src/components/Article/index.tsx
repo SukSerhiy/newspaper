@@ -3,7 +3,7 @@ import noImage from 'assets/images/no-image.png';
 import { IArticleProps } from './types';
 
 const Article: FC<IArticleProps> = ({ item }) => {
-  const { title, description, publishedAt, source, url, urlToImage } = item;
+  const { title, url, urlToImage } = item;
 
   const handleError = (error: any) => {
     console.log('error', error.target.src = noImage);
